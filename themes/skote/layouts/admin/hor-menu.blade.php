@@ -28,6 +28,8 @@
                                    class="dropdown-item">{{ _t('brand') }}</a>
                                 <a href="{{ route('tags.index') }}"
                                    class="dropdown-item">{{ _t('tag') }}</a>
+                                <a href="{{ route('products.index') }}"
+                                   class="dropdown-item">{{ _t('product') }}</a>
                             </div>
                         </li>
                     @endif

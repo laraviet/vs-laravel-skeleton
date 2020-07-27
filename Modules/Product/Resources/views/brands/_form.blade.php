@@ -11,7 +11,7 @@
     @endcomponent
 
     @component('common-components.forms.image-view')
-        @slot('path') {{ isset($productCategory) ? $productCategory->thumbnail : noImage() }} @endslot
+        @slot('path') {{ isset($brand) ? $brand->thumbnail : noImage() }} @endslot
     @endcomponent
 
     @component('common-components.forms.file')

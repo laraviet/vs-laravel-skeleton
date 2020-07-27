@@ -19,7 +19,9 @@ class CreateProductsTable extends Migration
             $table->boolean('is_feature')->default(false);
             $table->boolean('shippable')->default(false);
             $table->boolean('downloadable')->default(false);
-            $table->unsignedDouble('unit_price');
+            $table->string('sku');
+            $table->unsignedDouble('regular_price');
+            $table->unsignedDouble('sale_price')->nullable();
             $table->unsignedInteger('quantity');
             $table->unsignedTinyInteger('status')->default(1); // 1 - active ; 0 - inactive
             $table->timestamps();
