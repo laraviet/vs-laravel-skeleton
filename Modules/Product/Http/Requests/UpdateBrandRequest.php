@@ -14,9 +14,9 @@ class UpdateBrandRequest extends FormRequest
     public function rules()
     {
         return [
-            localize_field('name') => 'required',
-            'is_feature'           => 'nullable',
-            'status'               => 'required',
+            'name'       => 'required',
+            'is_feature' => 'nullable',
+            'status'     => 'required',
         ];
     }
 

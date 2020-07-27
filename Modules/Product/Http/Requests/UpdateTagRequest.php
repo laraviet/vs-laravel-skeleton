@@ -14,8 +14,8 @@ class UpdateTagRequest extends FormRequest
     public function rules()
     {
         return [
-            localize_field('name') => 'required',
-            'status'               => 'required',
+            'name'   => 'required',
+            'status' => 'required',
         ];
     }
 

@@ -2,7 +2,6 @@
 
 namespace Modules\Product\Entities;
 
-use Astrotomic\Translatable\Translatable;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Core\Entities\Traits\HasImageModel;
@@ -13,11 +12,10 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 
 class Brand extends Model implements HasMedia
 {
-    use Translatable, HasImageModel, Cachable;
+    use HasImageModel, Cachable;
     use BrandMethod, BrandAttribute, BrandScope;
 
     const THUMBNAIL = 'thumbnail';
 
-    protected $fillable = ['is_feature', 'status'];
-    public $translatedAttributes = ['name'];
+    protected $fillable = ['name', 'is_feature', 'status'];
 }

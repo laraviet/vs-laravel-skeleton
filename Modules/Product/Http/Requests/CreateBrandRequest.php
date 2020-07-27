@@ -14,10 +14,10 @@ class CreateBrandRequest extends FormRequest
     public function rules()
     {
         return [
-            localize_field('name') => 'required',
-            'is_feature'           => 'nullable',
-            'status'               => 'required',
-            'thumbnail'            => 'required',
+            'name'       => 'required',
+            'is_feature' => 'nullable',
+            'status'     => 'required',
+            'thumbnail'  => 'required',
         ];
     }
 
