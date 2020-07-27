@@ -19,9 +19,9 @@
 
                     @include('common-components.forms.alert-error')
 
-                    {!! Form::open(['route' => 'tags.store','method'=>'POST', 'class' => 'outer-repeater', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'product-tags.store','method'=>'POST', 'class' => 'outer-repeater', 'enctype' => 'multipart/form-data']) !!}
                     <div data-repeater-list="outer-group" class="outer">
-                        @include('product::tags._form')
+                        @include('product::product-tags._form')
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-lg-10">

@@ -4,9 +4,9 @@ namespace Modules\Product\Entities\Traits\Scope;
 
 use Modules\Core\Entities\Traits\Filterable\NameFilterable;
 use Modules\Product\Entities\Traits\Filterable\ActiveFilterable;
-use Modules\Product\Entities\Traits\Filterable\TagSearchFilterable;
+use Modules\Product\Entities\Traits\Filterable\ProductTagSearchFilterable;
 
-trait TagScope
+trait ProductTagScope
 {
-    use NameFilterable, TagSearchFilterable, ActiveFilterable;
+    use NameFilterable, ProductTagSearchFilterable, ActiveFilterable;
 }

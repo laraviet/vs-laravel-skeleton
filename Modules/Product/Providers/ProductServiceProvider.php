@@ -7,18 +7,18 @@ use Illuminate\Support\ServiceProvider;
 use Modules\Product\Repositories\Cache\BrandCacheRepository;
 use Modules\Product\Repositories\Cache\ProductCacheRepository;
 use Modules\Product\Repositories\Cache\ProductCategoryCacheRepository;
-use Modules\Product\Repositories\Cache\TagCacheRepository;
+use Modules\Product\Repositories\Cache\ProductTagCacheRepository;
 use Modules\Product\Repositories\Contracts\BrandRepositoryInterface;
 use Modules\Product\Repositories\Contracts\ProductCategoryRepositoryInterface;
 use Modules\Product\Repositories\Contracts\ProductRepositoryInterface;
-use Modules\Product\Repositories\Contracts\TagRepositoryInterface;
+use Modules\Product\Repositories\Contracts\ProductTagRepositoryInterface;
 
 class ProductServiceProvider extends ServiceProvider
 {
     public $bindings = [
         ProductCategoryRepositoryInterface::class => ProductCategoryCacheRepository::class,
         BrandRepositoryInterface::class           => BrandCacheRepository::class,
-        TagRepositoryInterface::class             => TagCacheRepository::class,
+        ProductTagRepositoryInterface::class      => ProductTagCacheRepository::class,
         ProductRepositoryInterface::class         => ProductCacheRepository::class,
     ];
 

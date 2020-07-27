@@ -9,25 +9,25 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Modules\Core\Exceptions\RepositoryException;
 use Modules\Core\Http\Controllers\Controller;
-use Modules\Product\Http\Requests\CreateTagRequest;
-use Modules\Product\Http\Requests\UpdateTagRequest;
-use Modules\Product\Repositories\Contracts\TagRepositoryInterface;
+use Modules\Product\Http\Requests\CreateProductTagRequest;
+use Modules\Product\Http\Requests\UpdateProductTagRequest;
+use Modules\Product\Repositories\Contracts\ProductTagRepositoryInterface;
 
-class TagController extends Controller
+class ProductTagController extends Controller
 {
     /**
-     * @var TagRepositoryInterface
+     * @var ProductTagRepositoryInterface
      */
-    private $tagRepository;
+    private $productTagRepository;
 
 
     /**
      * ProductCategoryController constructor.
-     * @param TagRepositoryInterface $tagRepository
+     * @param ProductTagRepositoryInterface $productTagRepository
      */
-    public function __construct(TagRepositoryInterface $tagRepository)
+    public function __construct(ProductTagRepositoryInterface $productTagRepository)
     {
-        $this->tagRepository = $tagRepository;
+        $this->productTagRepository = $productTagRepository;
     }
 
     /**
@@ -37,9 +37,9 @@ class TagController extends Controller
      */
     public function index(Request $request)
     {
-        $tags = $this->genPagination($request, $this->tagRepository);
+        $productTags = $this->genPagination($request, $this->productTagRepository);
 
-        return view('product::tags.index', compact('tags'));
+        return view('product::product-tags.index', compact('productTags'));
     }
 
     /**
@@ -48,20 +48,20 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('product::tags.create');
+        return view('product::product-tags.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param CreateTagRequest $request
+     * @param CreateProductTagRequest $request
      * @return RedirectResponse
      * @throws RepositoryException
      */
-    public function store(CreateTagRequest $request)
+    public function store(CreateProductTagRequest $request)
     {
-        $this->tagRepository->create($request->except('_token'));
+        $this->productTagRepository->create($request->except('_token'));
 
-        return redirect()->route('tags.index')
+        return redirect()->route('product-tags.index')
             ->with(config('core.session_success'), _t('tag') . ' ' . _t('create_success'));
     }
 
@@ -72,23 +72,23 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $tag = $this->tagRepository->findById($id);
+        $productTag = $this->productTagRepository->findById($id);
 
-        return view('product::tags.edit', compact('tag'));
+        return view('product::product-tags.edit', compact('productTag'));
     }
 
     /**
      * Update the specified resource in storage.
-     * @param UpdateTagRequest $request
+     * @param UpdateProductTagRequest $request
      * @param int $id
      * @return RedirectResponse
      * @throws RepositoryException
      */
-    public function update(UpdateTagRequest $request, $id)
+    public function update(UpdateProductTagRequest $request, $id)
     {
-        $this->tagRepository->updateById($id, $request->except(['_token', 'method']));
+        $this->productTagRepository->updateById($id, $request->except(['_token', 'method']));
 
-        return redirect()->route('tags.index')
+        return redirect()->route('product-tags.index')
             ->with(config('core.session_success'), _t('tag') . ' ' . _t('update_success'));
 
     }
@@ -101,9 +101,9 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        $this->tagRepository->deleteById($id);
+        $this->productTagRepository->deleteById($id);
 
-        return redirect()->route('tags.index')
+        return redirect()->route('product-tags.index')
             ->with(config('core.session_success'), _t('tag') . ' ' . _t('delete_success'));
     }
 }

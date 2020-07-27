@@ -29,16 +29,16 @@
                                            @if ($search = request()->get('filter')['search'])
                                            value="{{ $search  }}"
                                            @endif
-                                           onkeypress="return search(event, '{{ route('tags.index') }}')"
+                                           onkeypress="return search(event, '{{ route('product-tags.index') }}')"
                                     />
                                     <i class="bx bx-search-alt search-icon"
-                                       onclick="return redirectWithSearch('{{ route('tags.index') }}')"></i>
+                                       onclick="return redirectWithSearch('{{ route('product-tags.index') }}')"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-8">
                             <div class="text-sm-right">
-                                <a type="button" style="color: white;" href="{{ route('tags.create') }}"
+                                <a type="button" style="color: white;" href="{{ route('product-tags.create') }}"
                                    class="btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i
                                         class="mdi mdi-plus mr-1"></i> {{ _t('add_new') . ' ' . _t('tag') }}
                                 </a>
@@ -56,14 +56,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($tags as $tag)
+                            @foreach($productTags as $productTag)
                                 <tr>
-                                    <td>{{ $tag->name }}</td>
+                                    <td>{{ $productTag->name }}</td>
                                     <td>
-                                        {!! activeInactiveHtml($tag->statusName) !!}
+                                        {!! activeInactiveHtml($productTag->statusName) !!}
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('tags.edit', [$tag->id]) }}"
+                                        <a href="{{ route('product-tags.edit', [$productTag->id]) }}"
                                            class="mr-3 text-primary" data-toggle="tooltip"
                                            data-placement="top" title=""
                                            data-original-title="{{ _t('edit') }}">
@@ -71,7 +71,7 @@
                                         </a>
                                         {!! Form::open([
                                                 'method' => 'DELETE',
-                                                'route' => ['tags.destroy', $tag->id],
+                                                'route' => ['product-tags.destroy', $productTag->id],
                                                 'style'=>'display:inline',
                                                 'onsubmit' => 'return confirm("' . _t('delete_confirm') . '");'
                                         ]) !!}
@@ -92,7 +92,7 @@
                     </div>
 
                     <div class="pagination pagination-rounded justify-content-end mb-2">
-                        {{ $tags->withQueryString()->links() }}
+                        {{ $productTags->withQueryString()->links() }}
                     </div>
                 </div>
             </div>

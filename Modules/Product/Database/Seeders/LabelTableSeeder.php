@@ -22,6 +22,7 @@ class LabelTableSeeder extends Seeder
         Label::where('module', $module)->delete();
 
         $labels = [
+            ["key" => "product_management", "vi" => ["value" => "Quản lý sản phẩm"], "en" => ["value" => "Product Management"]],
             ["key" => "product_category", "vi" => ["value" => "Danh mục sản phẩm"], "en" => ["value" => "Product Category"]],
             ["key" => "featured", "vi" => ["value" => "Featured"], "en" => ["value" => "Featured"]],
             ["key" => "brand", "vi" => ["value" => "Hãng"], "en" => ["value" => "Brand"]],

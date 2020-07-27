@@ -6,7 +6,7 @@
     @endcomponent
 
     @component('common-components.forms.select',[
-        'options' => \Modules\Product\Entities\Tag::statuses(),
+        'options' => \Modules\Product\Entities\ProductTag::statuses(),
         'props' => [],
     ])
         @slot('field') status @endslot

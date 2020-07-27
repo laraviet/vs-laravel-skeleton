@@ -8,7 +8,7 @@
                     @if(Module::find('adminhome') && Module::find('adminhome')->isEnabled())
                         <li class="nav-item">
                             <a class="nav-link arrow-none" href="{{ route('admin.home') }}" aria-expanded="false">
-                                <i class="bx bx-home-circle mr-2"></i>{{ _t('home') }}
+                                <i class="bx bxs-home-circle mr-2"></i>{{ _t('home') }}
                             </a>
                         </li>
                     @endif
@@ -18,7 +18,7 @@
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-dollar mr-2"></i>{{ _t('ecommerce') }}
+                                <i class="bx bxs-cube mr-2"></i>{{ _t('product_management') }}
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
@@ -26,7 +26,7 @@
                                    class="dropdown-item">{{ _t('product_category') }}</a>
                                 <a href="{{ route('brands.index') }}"
                                    class="dropdown-item">{{ _t('brand') }}</a>
-                                <a href="{{ route('tags.index') }}"
+                                <a href="{{ route('product-tags.index') }}"
                                    class="dropdown-item">{{ _t('tag') }}</a>
                                 <a href="{{ route('products.index') }}"
                                    class="dropdown-item">{{ _t('product') }}</a>

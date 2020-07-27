@@ -2,7 +2,7 @@
 
 namespace Modules\Product\Entities\Traits\Methods;
 
-trait TagMethod
+trait ProductTagMethod
 {
     public static function statuses()
     {

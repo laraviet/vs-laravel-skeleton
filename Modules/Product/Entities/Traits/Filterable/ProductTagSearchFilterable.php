@@ -2,7 +2,7 @@
 
 namespace Modules\Product\Entities\Traits\Filterable;
 
-trait TagSearchFilterable
+trait ProductTagSearchFilterable
 {
     public function scopeSearch($query, $keyword)
     {
