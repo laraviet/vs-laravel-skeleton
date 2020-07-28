@@ -27,6 +27,7 @@ class CreateProductRequest extends FormRequest
             'feature_image'               => 'required',
             'shippable'                   => 'nullable',
             'downloadable'                => 'nullable',
+            'categories'                  => 'required',
         ];
     }
 

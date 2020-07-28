@@ -49,7 +49,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        $parents = $this->productCategoryRepository->toArray('id', 'name');
+        $parents = $this->productCategoryRepository->toArrayWithNone('id', 'name');
 
         return view('product::product-categories.create', compact('parents'));
     }
@@ -78,7 +78,7 @@ class ProductCategoryController extends Controller
     public function edit($id)
     {
         $productCategory = $this->productCategoryRepository->findById($id);
-        $parents = $this->productCategoryRepository->toArray('id', 'name');
+        $parents = $this->productCategoryRepository->toArrayWithNone('id', 'name');
         unset($parents[ $id ]);
 
         return view('product::product-categories.edit', compact('parents', 'productCategory'));

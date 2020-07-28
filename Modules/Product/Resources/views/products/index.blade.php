@@ -54,6 +54,7 @@
                                 <th>{{ _t('sku') }}</th>
                                 <th>{{ _t('name') }}</th>
                                 <th>{{ _t('price') }}</th>
+                                <th>{{ _t('category') }}</th>
                                 <th>{{ _t('brand') }}</th>
                                 <th>{{ _t('status') }}</th>
                                 <th class="text-center">{{ _t('action') }}</th>
@@ -67,6 +68,11 @@
                                     <td>{{ $product->name }}</td>
                                     <td>
                                         {{ format_currency($product->sale_price ?? $product->regular_price) }}
+                                    </td>
+                                    <td>
+                                        @foreach($product->categories as $category)
+                                            <div><label class="badge badge-success">{{ $category->name }}</label></div>
+                                        @endforeach
                                     </td>
                                     <td>{{ $product->brand ? $product->brand->name : '' }}</td>
                                     <td>

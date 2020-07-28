@@ -13,6 +13,7 @@ use Modules\Product\Entities\Product;
 use Modules\Product\Http\Requests\CreateProductRequest;
 use Modules\Product\Http\Requests\UpdateProductRequest;
 use Modules\Product\Repositories\Contracts\BrandRepositoryInterface;
+use Modules\Product\Repositories\Contracts\ProductCategoryRepositoryInterface;
 use Modules\Product\Repositories\Contracts\ProductRepositoryInterface;
 
 class ProductController extends Controller
@@ -25,16 +26,27 @@ class ProductController extends Controller
      * @var BrandRepositoryInterface
      */
     private $brandRepository;
+    /**
+     * @var ProductCategoryRepositoryInterface
+     */
+    private $productCategoryRepository;
 
     /**
      * ProductController constructor.
      * @param ProductRepositoryInterface $productRepository
      * @param BrandRepositoryInterface $brandRepository
+     * @param ProductCategoryRepositoryInterface $productCategoryRepository
      */
-    public function __construct(ProductRepositoryInterface $productRepository, BrandRepositoryInterface $brandRepository)
+    public function __construct(
+        ProductRepositoryInterface $productRepository,
+        BrandRepositoryInterface $brandRepository,
+        ProductCategoryRepositoryInterface $productCategoryRepository
+    )
     {
         $this->productRepository = $productRepository;
         $this->brandRepository = $brandRepository;
+        $this->productCategoryRepository = $productCategoryRepository;
+        $this->defaultEagerLoad = ['categories'];
     }
 
     /**
@@ -56,8 +68,9 @@ class ProductController extends Controller
     public function create()
     {
         $brands = $this->brandRepository->toArray('id', 'name', 'active');
+        $categories = $this->productCategoryRepository->toArray('id', 'name', 'active');
 
-        return view('product::products.create', compact('brands'));
+        return view('product::products.create', compact('brands', 'categories'));
     }
 
     /**
@@ -84,8 +97,9 @@ class ProductController extends Controller
     {
         $product = $this->productRepository->findById($id);
         $brands = $this->brandRepository->toArray('id', 'name', 'active');
+        $categories = $this->productCategoryRepository->toArray('id', 'name', 'active');
 
-        return view('product::products.edit', compact('product', 'brands'));
+        return view('product::products.edit', compact('product', 'brands', 'categories'));
     }
 
     /**
