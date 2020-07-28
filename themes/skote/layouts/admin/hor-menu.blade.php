@@ -47,6 +47,8 @@
                                    class="dropdown-item">{{ _t('blog_category') }}</a>
                                 <a href="{{ route('blog-tags.index') }}"
                                    class="dropdown-item">{{ _t('tag') }}</a>
+                                <a href="{{ route('blog-posts.index') }}"
+                                   class="dropdown-item">{{ _t('post') }}</a>
                             </div>
                         </li>
                     @endif

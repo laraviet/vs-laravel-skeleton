@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::resource('blog-categories', 'BlogCategoryController');
     Route::resource('blog-tags', 'BlogTagController');
+    Route::resource('blog-posts', 'BlogPostController');
 });
