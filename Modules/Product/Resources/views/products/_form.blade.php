@@ -82,6 +82,13 @@
         @slot('label') {{ _t('downloadable') }} @endslot
     @endcomponent
 
+    @component('common-components.forms.select',[
+    'options' => $tags,
+    'props' => ['class' => 'select2', 'multiple' => 'multiple'],
+    ])
+        @slot('field') tags[] @endslot
+        @slot('label') {{ _t('tag') }} @endslot
+    @endcomponent
 
     @component('common-components.forms.select',[
         'options' => \Modules\Product\Entities\Product::statuses(),

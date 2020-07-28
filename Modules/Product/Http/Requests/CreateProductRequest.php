@@ -28,6 +28,7 @@ class CreateProductRequest extends FormRequest
             'shippable'                   => 'nullable',
             'downloadable'                => 'nullable',
             'categories'                  => 'required',
+            'tags'                        => 'nullable',
         ];
     }
 

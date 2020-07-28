@@ -18,13 +18,19 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         $this->model = $product;
     }
 
+    private function syncProductRelationship($model, $attributes)
+    {
+        parent::syncRelationship($model, $attributes, 'categories');
+        parent::syncRelationship($model, $attributes, 'tags');
+    }
+
     /**
      * @inheritDoc
      */
     public function create(array $attributes): Model
     {
         $model = parent::create($attributes);
-        $model->categories()->sync($attributes['categories']);
+        $this->syncProductRelationship($model, $attributes);
 
         return $model;
     }
@@ -35,7 +41,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function update(Model $model, array $attributes): Model
     {
         $model = parent::update($model, $attributes);
-        $model->categories()->sync($attributes['categories']);
+        $this->syncProductRelationship($model, $attributes);
 
         return $model;
     }
