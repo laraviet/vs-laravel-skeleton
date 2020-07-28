@@ -1,5 +1,6 @@
 {
     "AdminHome": true,
     "Core": true,
-    "Product": true
+    "Product": true,
+    "Blog": true
 }
