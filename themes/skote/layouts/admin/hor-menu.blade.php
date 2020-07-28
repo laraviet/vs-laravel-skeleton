@@ -45,6 +45,8 @@
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
                                 <a href="{{ route('blog-categories.index') }}"
                                    class="dropdown-item">{{ _t('blog_category') }}</a>
+                                <a href="{{ route('blog-tags.index') }}"
+                                   class="dropdown-item">{{ _t('tag') }}</a>
                             </div>
                         </li>
                     @endif

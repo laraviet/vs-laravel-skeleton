@@ -5,12 +5,15 @@ namespace Modules\Blog\Providers;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\ServiceProvider;
 use Modules\Blog\Repositories\Cache\BlogCategoryCacheRepository;
+use Modules\Blog\Repositories\Cache\BlogTagCacheRepository;
 use Modules\Blog\Repositories\Contracts\BlogCategoryRepositoryInterface;
+use Modules\Blog\Repositories\Contracts\BlogTagRepositoryInterface;
 
 class BlogServiceProvider extends ServiceProvider
 {
     public $bindings = [
         BlogCategoryRepositoryInterface::class => BlogCategoryCacheRepository::class,
+        BlogTagRepositoryInterface::class      => BlogTagCacheRepository::class,
     ];
     /**
      * @var string $moduleName
