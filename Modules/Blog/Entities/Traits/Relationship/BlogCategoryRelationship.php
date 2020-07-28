@@ -14,6 +14,6 @@ trait BlogCategoryRelationship
 
     public function posts()
     {
-        return $this->belongsToMany(BlogPost::class, 'blog_category_post', 'blog_category_id', 'blog_post_id');
+        return $this->belongsToMany(BlogPost::class, 'blog_category_post_pivot', 'blog_category_id', 'blog_post_id');
     }
 }
