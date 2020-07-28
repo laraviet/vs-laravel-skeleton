@@ -49,7 +49,7 @@ class BlogCategoryController extends Controller
      */
     public function create()
     {
-        $parents = $this->blogCategoryRepository->toArray('id', 'name');
+        $parents = $this->blogCategoryRepository->toArrayWithNone('id', 'name');
 
         return view('blog::blog-categories.create', compact('parents'));
     }
@@ -78,7 +78,7 @@ class BlogCategoryController extends Controller
     public function edit($id)
     {
         $blogCategory = $this->blogCategoryRepository->findById($id);
-        $parents = $this->blogCategoryRepository->toArray('id', 'name');
+        $parents = $this->blogCategoryRepository->toArrayWithNone('id', 'name');
         unset($parents[ $id ]);
 
         return view('blog::blog-categories.edit', compact('parents', 'blogCategory'));

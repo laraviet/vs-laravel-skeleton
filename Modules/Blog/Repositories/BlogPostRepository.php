@@ -30,7 +30,10 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
 
         $attributes['created_by'] = auth()->user()->id;
 
-        return parent::create($attributes);
+        $model = parent::create($attributes);
+        $model->categories()->sync($attributes['categories']);
+
+        return $model;
     }
 
     /**
@@ -42,6 +45,9 @@ class BlogPostRepository extends BaseRepository implements BlogPostRepositoryInt
             $attributes['published_at'] = Carbon::now();
         }
 
-        return parent::update($model, $attributes);
+        $model = parent::update($model, $attributes);
+        $model->categories()->sync($attributes['categories']);
+
+        return $model;
     }
 }

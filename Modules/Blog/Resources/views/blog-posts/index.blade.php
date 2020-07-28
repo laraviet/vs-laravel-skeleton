@@ -53,6 +53,7 @@
                                 <th>{{ _t('title') }}</th>
                                 <th>{{ _t('content') }}</th>
                                 <th>{{ _t('feature_image') }}</th>
+                                <th>{{ _t('category') }}</th>
                                 <th>{{ _t('status') }}</th>
                                 <th class="text-center">{{ _t('action') }}</th>
                             </tr>
@@ -63,6 +64,11 @@
                                     <td>{{ $blogPost->title }}</td>
                                     <td>{{ str_limit($blogPost->content) }}</td>
                                     <td><img src="{{ $blogPost->featureImage }}" alt=""></td>
+                                    <td>
+                                        @foreach($blogPost->categories as $category)
+                                            <div><label class="badge badge-success">{{ $category->name }}</label></div>
+                                        @endforeach
+                                    </td>
                                     <td>
                                         {!! activeInactiveHtml($blogPost->statusName) !!}
                                     </td>

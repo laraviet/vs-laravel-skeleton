@@ -1,4 +1,12 @@
 <div data-repeater-item class="outer">
+    @component('common-components.forms.select',[
+        'options' => $categories,
+        'props' => ['class' => 'select2', 'multiple' => 'multiple'],
+    ])
+        @slot('field') categories[] @endslot
+        @slot('label') {{ _t('category') }} @endslot
+    @endcomponent
+
     @component('common-components.forms.text')
         @slot('field') {{ localize_field('title') }} @endslot
         @slot('label') {{ _t('title') }} @endslot

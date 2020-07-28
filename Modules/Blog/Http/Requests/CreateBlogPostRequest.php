@@ -18,6 +18,7 @@ class CreateBlogPostRequest extends FormRequest
             localize_field('content') => 'required',
             'status'                  => 'required',
             'feature_image'           => 'required',
+            'categories'              => 'required',
         ];
     }
 

@@ -21,18 +21,6 @@ class BlogCategoryRepository extends BaseRepository implements BlogCategoryRepos
     /**
      * @inheritDoc
      */
-    public function toArray($key, $column, $scope = null): array
-    {
-        $list = parent::toArray($key, $column, $scope);
-
-        return array_merge([
-            0 => "None",
-        ], $list);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function updateById($id, array $attributes): Model
     {
         if ($attributes['parent_id'] != 0) {

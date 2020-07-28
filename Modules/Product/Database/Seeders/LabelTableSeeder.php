@@ -36,6 +36,7 @@ class LabelTableSeeder extends Seeder
             ["key" => "sku", "vi" => ["value" => "Mã Sku"], "en" => ["value" => "Sku Code"]],
             ["key" => "shippable", "vi" => ["value" => "Có thể ship"], "en" => ["value" => "Shippable"]],
             ["key" => "downloadable", "vi" => ["value" => "Có thể download"], "en" => ["value" => "Downloadable"]],
+            ["key" => "category", "vi" => ["value" => "Danh mục"], "en" => ["value" => "Category"]],
         ];
 
         foreach ($labels as $label) {

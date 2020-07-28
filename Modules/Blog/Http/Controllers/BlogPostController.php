@@ -10,6 +10,7 @@ use Illuminate\View\View;
 use Modules\Blog\Entities\BlogPost;
 use Modules\Blog\Http\Requests\CreateBlogPostRequest;
 use Modules\Blog\Http\Requests\UpdateBlogPostRequest;
+use Modules\Blog\Repositories\Contracts\BlogCategoryRepositoryInterface;
 use Modules\Blog\Repositories\Contracts\BlogPostRepositoryInterface;
 use Modules\Core\Exceptions\RepositoryException;
 use Modules\Core\Http\Controllers\Controller;
@@ -20,14 +21,21 @@ class BlogPostController extends Controller
      * @var BlogPostRepositoryInterface
      */
     private $blogPostRepository;
+    /**
+     * @var BlogCategoryRepositoryInterface
+     */
+    private $blogCategoryRepository;
 
     /**
      * BlogCategoryController constructor.
      * @param BlogPostRepositoryInterface $blogPostRepository
+     * @param BlogCategoryRepositoryInterface $blogCategoryRepository
      */
-    public function __construct(BlogPostRepositoryInterface $blogPostRepository)
+    public function __construct(BlogPostRepositoryInterface $blogPostRepository, BlogCategoryRepositoryInterface $blogCategoryRepository)
     {
         $this->blogPostRepository = $blogPostRepository;
+        $this->blogCategoryRepository = $blogCategoryRepository;
+        $this->defaultEagerLoad = ['categories'];
     }
 
     /**
@@ -48,7 +56,9 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-        return view('blog::blog-posts.create');
+        $categories = $this->blogCategoryRepository->toArray('id', 'name', 'active');
+
+        return view('blog::blog-posts.create', compact('categories'));
     }
 
     /**
@@ -74,8 +84,9 @@ class BlogPostController extends Controller
     public function edit($id)
     {
         $blogPost = $this->blogPostRepository->findById($id);
+        $categories = $this->blogCategoryRepository->toArray('id', 'name', 'active');
 
-        return view('blog::blog-posts.edit', compact('blogPost'));
+        return view('blog::blog-posts.edit', compact('blogPost', 'categories'));
     }
 
     /**
