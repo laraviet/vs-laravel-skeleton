@@ -13,7 +13,7 @@ class CreateBlogCategoryPostTable extends Migration
      */
     public function up()
     {
-        Schema::create('blog_category_post', function (Blueprint $table) {
+        Schema::create('blog_category_post_pivot', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('blog_category_id');
             $table->unsignedBigInteger('blog_post_id');
@@ -28,6 +28,6 @@ class CreateBlogCategoryPostTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog_category_post');
+        Schema::dropIfExists('blog_category_post_pivot');
     }
 }
