@@ -54,6 +54,18 @@
         @slot('placeholder') {{ _t('enter') . ' ' . _t('feature_image') . '...' }} @endslot
     @endcomponent
 
+    @component('common-components.forms.images-view', [
+        'images' => isset($product) ? $product->detailImages : collect([])
+    ])
+    @endcomponent
+    @component('common-components.forms.file', [
+        "multiple" => true,
+    ])
+        @slot('field') detail_images[] @endslot
+        @slot('label') {{ _t('detail_images') }} @endslot
+        @slot('placeholder') {{ _t('enter') . ' ' . _t('detail_images') . '...' }} @endslot
+    @endcomponent
+
     @component('common-components.forms.text')
         @slot('field') regular_price @endslot
         @slot('label') {{ _t('regular_price') }} @endslot

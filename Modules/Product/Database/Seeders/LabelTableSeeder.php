@@ -31,6 +31,7 @@ class LabelTableSeeder extends Seeder
             ["key" => "price", "vi" => ["value" => "Giá"], "en" => ["value" => "Price"]],
             ["key" => "caption", "vi" => ["value" => "Đầu đề"], "en" => ["value" => "Caption"]],
             ["key" => "feature_image", "vi" => ["value" => "Ảnh feature"], "en" => ["value" => "Feature Image"]],
+            ["key" => "detail_images", "vi" => ["value" => "Ảnh detail"], "en" => ["value" => "Detail Images"]],
             ["key" => "regular_price", "vi" => ["value" => "Giá bình thường"], "en" => ["value" => "Regular Price"]],
             ["key" => "sale_price", "vi" => ["value" => "Giá sale"], "en" => ["value" => "Sale Price"]],
             ["key" => "sku", "vi" => ["value" => "Mã Sku"], "en" => ["value" => "Sku Code"]],

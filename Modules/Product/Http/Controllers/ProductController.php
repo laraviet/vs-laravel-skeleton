@@ -99,6 +99,7 @@ class ProductController extends Controller
     {
         $product = $this->productRepository->create($request->except('_token'));
         $this->uploadImage($product, $request, 'feature_image', Product::FEATURE_IMAGE);
+        $this->uploadImages($product, $request, 'detail_images', Product::DETAIL_IMAGE);
 
         return redirect()->route('products.index')
             ->with(config('core.session_success'), _t('product') . ' ' . _t('create_success'));
@@ -128,6 +129,7 @@ class ProductController extends Controller
     {
         $product = $this->productRepository->updateById($id, $request->except(['_token', 'method']));
         $this->uploadImage($product, $request, 'feature_image', Product::FEATURE_IMAGE);
+        $this->uploadImages($product, $request, 'detail_images', Product::DETAIL_IMAGE);
 
         return redirect()->route('products.index')
             ->with(config('core.session_success'), _t('product') . ' ' . _t('update_success'));

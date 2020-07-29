@@ -15,6 +15,6 @@ trait ProductCategoryAttribute
 
     public function getThumbnailAttribute()
     {
-        return $this->getImage('noImage', self::THUMBNAIL);
+        return $this->getImagePath('noImage', self::THUMBNAIL);
     }
 }

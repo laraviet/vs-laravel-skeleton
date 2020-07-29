@@ -25,6 +25,7 @@ class CreateProductRequest extends FormRequest
             'is_feature'                  => 'nullable',
             'status'                      => 'required',
             'feature_image'               => 'required',
+            'detail_images'               => 'nullable',
             'shippable'                   => 'nullable',
             'downloadable'                => 'nullable',
             'categories'                  => 'required',

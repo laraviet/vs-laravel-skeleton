@@ -4,6 +4,7 @@
 
 @section('css')
     <link href="{{ theme_url('assets/css/select2.min.css')}}" id="app-light" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="{{ theme_url('assets/libs/toastr/toastr.min.css')}}">
 @endsection
 
 @section('content')
@@ -40,4 +41,8 @@
     </div>
     <!-- end row -->
 
+@endsection
+
+@section('script')
+    @include('common-components.functions.toastr')
 @endsection

@@ -15,7 +15,7 @@ trait ProductAttribute
 
     public function getFeatureImageAttribute()
     {
-        return $this->getImage('noImage', self::FEATURE_IMAGE);
+        return $this->getImagePath('noImage', self::FEATURE_IMAGE);
     }
 
     public function getDetailImagesAttribute()
