@@ -2,5 +2,6 @@
     "AdminHome": true,
     "Core": true,
     "Product": true,
-    "Blog": true
+    "Blog": true,
+    "Order": true
 }

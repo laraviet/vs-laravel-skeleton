@@ -33,6 +33,20 @@
                             </div>
                         </li>
                     @endif
+                    @if(Module::find('order') && Module::find('order')->isEnabled())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
+                               role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bxs-cube mr-2"></i>{{ _t('order_management') }}
+                                <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                                <a href="{{ route('orders.index') }}"
+                                   class="dropdown-item">{{ _t('order') }}</a>
+                            </div>
+                        </li>
+                    @endif
 
                     @if(Module::find('blog') && Module::find('blog')->isEnabled())
                         <li class="nav-item dropdown">

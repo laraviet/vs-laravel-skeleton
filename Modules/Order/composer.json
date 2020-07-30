@@ -1,5 +1,5 @@
 {
-    "name": "laraviet/blog-module",
+    "name": "laraviet/order-module",
     "description": "",
     "authors": [
         {
@@ -9,12 +9,13 @@
     ],
     "license": "MIT",
     "require": {
-        "laraviet/core-module": "dev-master"
+        "laraviet/core-module": "dev-master",
+        "laraviet/product-module": "dev-master"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Modules\\Blog\\Providers\\BlogServiceProvider"
+                "Modules\\Order\\Providers\\OrderServiceProvider"
             ],
             "aliases": {
             }
@@ -22,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Blog\\": ""
+            "Modules\\Order\\": ""
         }
     },
     "type": "laravel-module"
