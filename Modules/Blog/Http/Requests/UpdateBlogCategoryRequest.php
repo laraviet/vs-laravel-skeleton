@@ -15,7 +15,7 @@ class UpdateBlogCategoryRequest extends FormRequest
     {
         return [
             localize_field('name') => 'required',
-            'parent_id'            => 'nullable',
+            'parent_id'            => 'required',
             'status'               => 'required',
         ];
     }
