@@ -16,7 +16,7 @@ class CreateProductCategoryRequest extends FormRequest
         return [
             localize_field('name')        => 'required',
             localize_field('description') => 'required',
-            'parent_id'                   => 'nullable',
+            'parent_id'                   => 'required',
             'is_feature'                  => 'nullable',
             'status'                      => 'required',
             'thumbnail'                   => 'required',
