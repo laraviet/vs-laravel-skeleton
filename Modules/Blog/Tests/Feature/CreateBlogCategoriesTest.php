@@ -4,42 +4,12 @@ namespace Modules\Blog\Tests\Feature;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Modules\Core\Tests\TestCase;
+use Modules\Blog\Tests\Base\BaseBlogCategoriesTest;
+use Modules\Core\Tests\Concerns\CreateEntityTest;
 
-class CreateBlogCategoriesTest extends TestCase
+class CreateBlogCategoriesTest extends BaseBlogCategoriesTest
 {
-    private function accessCreateCategoryForm()
-    {
-        return $this->get(route('blog-categories.create'));
-    }
-
-    private function storeBlogCategory($overrides = [])
-    {
-        return $this->post(route('blog-categories.store'), $overrides);
-    }
-
-    /** @test */
-    public function unauthenticated_users_can_not_access_create_blog_categories_form()
-    {
-        $this->accessCreateCategoryForm()
-            ->assertRedirect(self::LOGIN_URL);
-    }
-
-    /** @test */
-    public function authenticated_users_can_access_create_blog_categories_form()
-    {
-        $this->signIn();
-
-        $this->accessCreateCategoryForm()
-            ->assertStatus(200);
-    }
-
-    /** @test */
-    public function unauthenticated_users_can_not_store_blog_categories()
-    {
-        $this->storeBlogCategory()
-            ->assertRedirect(self::LOGIN_URL);
-    }
+    use CreateEntityTest;
 
     /** @test */
     public function authenticated_users_can_store_blog_categories()
@@ -49,13 +19,13 @@ class CreateBlogCategoriesTest extends TestCase
 
         Storage::fake('photos');
 
-        $this->storeBlogCategory([
+        $this->storeEntity([
             localize_field('name') => 'test',
             'status'               => 1,
             'parent_id'            => 0,
             'thumbnail'            => UploadedFile::fake()->image('test.jpg')
         ])
-            ->assertRedirect(route('blog-categories.index'));
+            ->assertRedirect(route($this->index_route));
     }
 
     /** @test */
@@ -63,7 +33,7 @@ class CreateBlogCategoriesTest extends TestCase
     {
         $this->signIn();
 
-        $this->storeBlogCategory()
+        $this->storeEntity()
             ->assertSessionHasErrors([localize_field('name'), 'status', 'thumbnail', 'parent_id']);
     }
 }

@@ -7,7 +7,7 @@ use Modules\Blog\Entities\BlogTag;
 
 $factory->define(BlogTag::class, function (Faker $faker) {
     return [
-        'name'   => $faker->word,
+        'name'   => $faker->words(3, true),
         'status' => $faker->numberBetween(0, 1)
     ];
 });

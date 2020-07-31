@@ -2,53 +2,23 @@
 
 namespace Modules\Blog\Tests\Feature;
 
-use Modules\Core\Tests\TestCase;
+use Modules\Blog\Tests\Base\BaseBlogTagsTest;
+use Modules\Core\Tests\Concerns\CreateEntityTest;
 
-class CreateBlogTagsTest extends TestCase
+class CreateBlogTagsTest extends BaseBlogTagsTest
 {
-    private function accessCreateTagForm()
-    {
-        return $this->get(route('blog-tags.create'));
-    }
-
-    private function storeTag($overrides = [])
-    {
-        return $this->post(route('blog-tags.store'), $overrides);
-    }
-
-    /** @test */
-    public function unauthenticated_users_can_not_access_create_form()
-    {
-        $this->accessCreateTagForm()
-            ->assertRedirect(self::LOGIN_URL);
-    }
-
-    /** @test */
-    public function authenticated_users_can_access_create_form()
-    {
-        $this->signIn();
-
-        $this->accessCreateTagForm()
-            ->assertStatus(200);
-    }
-
-    /** @test */
-    public function unauthenticated_users_can_not_create_new_tag()
-    {
-        $this->storeTag()
-            ->assertRedirect(self::LOGIN_URL);
-    }
+    use CreateEntityTest;
 
     /** @test */
     public function authenticated_users_can_create_new_tag()
     {
         $this->signIn();
 
-        $this->storeTag([
+        $this->storeEntity([
             'name'   => 'test',
             'status' => 1,
         ])
-            ->assertRedirect(route('blog-tags.index'));
+            ->assertRedirect(route($this->index_route));
     }
 
     /** @test */
@@ -56,7 +26,7 @@ class CreateBlogTagsTest extends TestCase
     {
         $this->signIn();
 
-        $this->storeTag()
+        $this->storeEntity()
             ->assertSessionHasErrors(['name', 'status']);
     }
 }

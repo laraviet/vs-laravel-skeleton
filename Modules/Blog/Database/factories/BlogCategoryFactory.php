@@ -10,10 +10,10 @@ $factory->define(BlogCategory::class, function (Faker $faker) {
         'parent_id' => $faker->randomNumber(1),
         'status'    => $faker->numberBetween(0, 1),
         'vi'        => [
-            'name' => $faker->word,
+            'name' => $faker->words(3, true),
         ],
         'en'        => [
-            'name' => $faker->word,
+            'name' => $faker->words(3, true),
         ]
     ];
 });

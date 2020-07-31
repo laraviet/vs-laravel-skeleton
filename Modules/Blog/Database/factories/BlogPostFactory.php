@@ -13,11 +13,11 @@ $factory->define(BlogPost::class, function (Faker $faker) {
         'published_at' => Carbon::now(),
         'status'       => $faker->numberBetween(0, 1),
         'vi'           => [
-            'title'   => $faker->word,
+            'title'   => $faker->words(3, true),
             'content' => $faker->sentence,
         ],
         'en'           => [
-            'title'   => $faker->word,
+            'title'   => $faker->words(3, true),
             'content' => $faker->sentence,
         ]
     ];
