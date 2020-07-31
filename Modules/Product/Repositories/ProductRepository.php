@@ -20,8 +20,13 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     private function syncProductRelationship($model, $attributes)
     {
-        parent::syncRelationship($model, $attributes, 'categories');
-        parent::syncRelationship($model, $attributes, 'tags');
+        if (isset($attributes['categories'])) {
+            parent::syncRelationship($model, $attributes, 'categories');
+        }
+
+        if (isset($attributes['tags'])) {
+            parent::syncRelationship($model, $attributes, 'tags');
+        }
     }
 
     /**
