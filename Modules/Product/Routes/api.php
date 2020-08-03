@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/product', function (Request $request) {
-    return $request->user();
-});
+use Illuminate\Support\Facades\Route;
+
+Route::get('/product/{id}/price', 'Api\ProductPriceController@show')->name('product.price');

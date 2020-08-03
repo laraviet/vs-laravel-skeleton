@@ -15,6 +15,7 @@ class CreateOrderRequest extends FormRequest
     {
         return [
             'order_by' => 'required',
+            'products' => 'required',
         ];
     }
 

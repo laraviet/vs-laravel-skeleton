@@ -14,6 +14,6 @@ trait OrderRelationship
 
     public function orderBy()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'order_by', 'id');
     }
 }

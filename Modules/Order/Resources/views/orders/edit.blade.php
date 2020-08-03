@@ -26,7 +26,7 @@
 
                     {!! Form::model($order, ['route' => ['orders.update', $order->id],'method'=>'PATCH', 'class' => 'outer-repeater', 'enctype' => 'multipart/form-data']) !!}
                     <div data-repeater-list="outer-group" class="outer">
-                        @include('order::orders._form')
+                        @include('order::orders._edit_form')
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-lg-10">

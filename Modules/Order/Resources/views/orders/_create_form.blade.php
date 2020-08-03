@@ -16,7 +16,7 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <table class="table table-centered table-nowrap">
+                    <table class="table table-centered table-nowrap" id="product_cart">
                         <thead class="thead-light">
                         <tr>
                             <th>{{ _t('item') }}</th>
@@ -51,7 +51,31 @@
 @push('script-extra')
     <script>
         $(document).on('click', '#add-product', function () {
-            alert('aaa');
+            let product_id = $('select[name="product"]').val();
+            let product_name = $('select[name="product"] option:selected').text();
+            let quantity = $('select[name="quantity"]').val();
+            $.ajax({
+                url: "/api/product/" + product_id + "/price",
+            }).done(function (data) {
+                $('#product_cart tbody').append(
+                    "<tr>" +
+                    "<td>" +
+                    "<input type='hidden' name='products[]' value='{\"id\":" + product_id + ",\"unit_price\":" + data.unit_price + ",\"quantity\":" + quantity + "}' />" +
+                    "<span>" + product_name + "</span>" +
+                    "</td>" +
+                    "<td>" +
+                    "<span>" + data.unit_price + "</span>" +
+                    "</td>" +
+                    "<td>" +
+                    "<span>" + quantity + "</span>" +
+                    "</td>" +
+                    "<td>" +
+                    "<span>" + data.unit_price * quantity + "</span>" +
+                    "</td>" +
+                    "</tr>"
+                )
+                ;
+            });
         })
     </script>
 @endpush

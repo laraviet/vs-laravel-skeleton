@@ -4,9 +4,11 @@ namespace Modules\Order\Http\Controllers;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+use Modules\Core\Exceptions\RepositoryException;
 use Modules\Core\Http\Controllers\Controller;
 use Modules\Core\Repositories\Contracts\UserRepositoryInterface;
 use Modules\Order\Http\Requests\CreateOrderRequest;
@@ -42,7 +44,7 @@ class OrderController extends Controller
     )
     {
         $this->orderRepository = $orderRepository;
-        $this->defaultEagerLoad = ['orderItems', 'orderBy'];
+        $this->defaultEagerLoad = ['orderItems.product', 'orderBy'];
         $this->userRepository = $userRepository;
         $this->productRepository = $productRepository;
     }
@@ -75,20 +77,19 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      * @param CreateOrderRequest $request
      * @return void
+     * @throws RepositoryException
      */
     public function store(CreateOrderRequest $request)
     {
-        //
-    }
+        $products = [];
+        foreach ($request->input('products') as $product) {
+            $products[] = \json_decode($product);
+        }
+        $order_by = $request->input('order_by');
+        $this->orderRepository->create(compact('products', 'order_by'));
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('order::orders.show');
+        return redirect()->route('orders.index')
+            ->with(config('core.session_success'), _t('order') . ' ' . _t('create_success'));
     }
 
     /**
@@ -98,18 +99,24 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        return view('order::orders.edit');
+        $order = $this->orderRepository->findById($id);
+
+        return view('order::orders.edit', compact('order'));
     }
 
     /**
      * Update the specified resource in storage.
      * @param UpdateOrderRequest $request
      * @param int $id
-     * @return void
+     * @return RedirectResponse
+     * @throws RepositoryException
      */
     public function update(UpdateOrderRequest $request, $id)
     {
-        //
+        $this->orderRepository->updateById($id, $request->input('products'));
+
+        return redirect()->route('orders.index')
+            ->with(config('core.session_success'), _t('order') . ' ' . _t('update_success'));
     }
 
     /**

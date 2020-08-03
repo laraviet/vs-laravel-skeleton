@@ -21,7 +21,7 @@
 
                     {!! Form::open(['route' => 'orders.store','method'=>'POST', 'class' => 'outer-repeater', 'enctype' => 'multipart/form-data']) !!}
                     <div data-repeater-list="outer-group" class="outer">
-                        @include('order::orders._form')
+                        @include('order::orders._create_form')
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-lg-10">

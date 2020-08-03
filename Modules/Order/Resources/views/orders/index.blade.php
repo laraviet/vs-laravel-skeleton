@@ -60,7 +60,7 @@
                             <tbody>
                             @foreach($orders as $order)
                                 <tr>
-                                    <td><img src="{{ $order->order_number }}" alt=""></td>
+                                    <td>{{ $order->order_number }}</td>
                                     <td>{{ format_currency($order->amount) }}</td>
                                     <td>{{ $order->statusName }}</td>
                                     <td>

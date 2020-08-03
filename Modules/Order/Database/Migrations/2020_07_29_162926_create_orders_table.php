@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('order_number');
+            $table->string('order_number')->nullable();
             $table->unsignedDouble('amount');
             $table->unsignedBigInteger('order_by')->nullable();
             $table->unsignedTinyInteger('status')->default(0); // 0 - Pending, 1 - Processing, 2 - Submitted, 3 - Cancelled, 4 - Completed
