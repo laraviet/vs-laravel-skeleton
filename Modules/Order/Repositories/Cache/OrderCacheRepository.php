@@ -22,4 +22,15 @@ class OrderCacheRepository extends BaseCacheRepository implements OrderRepositor
         $this->cache = $cache;
         parent::__construct($orderRepository);
     }
+
+    /**
+     * @param $id
+     * @param $amount
+     */
+    public function updatePaid($id, $amount)
+    {
+        $this->clearListCache();
+        $this->clearItemCache($id);
+        $this->repository->updatePaid($id, $amount);
+    }
 }

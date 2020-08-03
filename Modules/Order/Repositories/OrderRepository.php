@@ -67,7 +67,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         $model = $this->findById($id);
         $amount = 0;
 
-        foreach ($attributes as $id => $product) {
+        foreach ($attributes['products'] as $id => $product) {
             $total = $product['quantity'] * $product['unit_price'];
             $this->orderItemRepository->updateById($id, [
                 'unit_price' => $product['unit_price'],
@@ -77,11 +77,23 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
             $amount += $total;
         }
 
-        if ($model->amount != $amount) {
+        if ($model->amount != $amount || $model->status != $attributes['status']) {
             $model->amount = $amount;
+            $model->status = $attributes['status'];
             $model->save();
         }
 
         return $model;
+    }
+
+    /**
+     * @param $id
+     * @param $amount
+     */
+    public function updatePaid($id, $amount)
+    {
+        $model = $this->findById($id);
+        $model->paid += $amount;
+        $model->save();
     }
 }

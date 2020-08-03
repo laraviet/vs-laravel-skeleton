@@ -8,4 +8,9 @@ trait OrderAttribute
     {
         return self::statuses()[ $this->status ];
     }
+
+    public function getRemainAttribute()
+    {
+        return $this->amount - $this->paid;
+    }
 }

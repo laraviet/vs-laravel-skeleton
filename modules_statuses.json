@@ -3,5 +3,6 @@
     "Core": true,
     "Product": true,
     "Blog": true,
-    "Order": true
+    "Order": true,
+    "Payment": true
 }

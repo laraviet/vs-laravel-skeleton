@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use Modules\Core\Exceptions\RepositoryException;
 use Modules\Core\Http\Controllers\Controller;
 use Modules\Core\Repositories\Contracts\UserRepositoryInterface;
+use Modules\Order\Entities\Order;
 use Modules\Order\Http\Requests\CreateOrderRequest;
 use Modules\Order\Http\Requests\UpdateOrderRequest;
 use Modules\Order\Repositories\Contracts\OrderRepositoryInterface;
@@ -76,7 +77,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param CreateOrderRequest $request
-     * @return void
+     * @return RedirectResponse
      * @throws RepositoryException
      */
     public function store(CreateOrderRequest $request)
@@ -95,13 +96,14 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      * @param int $id
-     * @return Response
+     * @return Application|Factory|Response|View
      */
     public function edit($id)
     {
         $order = $this->orderRepository->findById($id);
+        $status = Order::statuses();
 
-        return view('order::orders.edit', compact('order'));
+        return view('order::orders.edit', compact('order', 'status'));
     }
 
     /**
@@ -113,7 +115,7 @@ class OrderController extends Controller
      */
     public function update(UpdateOrderRequest $request, $id)
     {
-        $this->orderRepository->updateById($id, $request->input('products'));
+        $this->orderRepository->updateById($id, $request->except(['_token', 'method']));
 
         return redirect()->route('orders.index')
             ->with(config('core.session_success'), _t('order') . ' ' . _t('update_success'));
@@ -122,10 +124,14 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param int $id
-     * @return Response
+     * @return RedirectResponse
+     * @throws RepositoryException
      */
     public function destroy($id)
     {
-        //
+        $this->orderRepository->deleteById($id);
+
+        return redirect()->route('orders.index')
+            ->with(config('core.session_success'), _t('order') . ' ' . _t('delete_success'));
     }
 }

@@ -1,4 +1,12 @@
 <div data-repeater-item class="outer">
+    @component('common-components.forms.select', [
+        'options' => $status,
+        'props' => ['class' => 'select2'],
+    ])
+        @slot('field') status @endslot
+        @slot('label') {{ _t('status') }} @endslot
+    @endcomponent
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card border border-primary">

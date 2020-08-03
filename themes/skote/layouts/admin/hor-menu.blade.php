@@ -18,32 +18,26 @@
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bxs-cube mr-2"></i>{{ _t('product_management') }}
+                                <i class="bx bxs-cube mr-2"></i>{{ _t('ecommerce') }}
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="{{ route('product-categories.index') }}"
-                                   class="dropdown-item">{{ _t('product_category') }}</a>
                                 <a href="{{ route('brands.index') }}"
                                    class="dropdown-item">{{ _t('brand') }}</a>
                                 <a href="{{ route('product-tags.index') }}"
                                    class="dropdown-item">{{ _t('tag') }}</a>
+                                <a href="{{ route('product-categories.index') }}"
+                                   class="dropdown-item">{{ _t('product_category') }}</a>
                                 <a href="{{ route('products.index') }}"
                                    class="dropdown-item">{{ _t('product') }}</a>
-                            </div>
-                        </li>
-                    @endif
-                    @if(Module::find('order') && Module::find('order')->isEnabled())
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
-                               role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bxs-cube mr-2"></i>{{ _t('order_management') }}
-                                <div class="arrow-down"></div>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="{{ route('orders.index') }}"
-                                   class="dropdown-item">{{ _t('order') }}</a>
+                                @if(Module::find('order') && Module::find('order')->isEnabled())
+                                    <a href="{{ route('orders.index') }}"
+                                       class="dropdown-item">{{ _t('order') }}</a>
+                                @endif
+                                @if(Module::find('payment') && Module::find('payment')->isEnabled())
+                                    <a href="{{ route('payments.index') }}"
+                                       class="dropdown-item">{{ _t('payment') }}</a>
+                                @endif
                             </div>
                         </li>
                     @endif

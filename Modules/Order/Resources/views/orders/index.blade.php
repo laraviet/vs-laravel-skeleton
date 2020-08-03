@@ -52,6 +52,7 @@
                             <tr>
                                 <th>{{ _t('order_number') }}</th>
                                 <th>{{ _t('amount') }}</th>
+                                <th>{{ _t('remain') }}</th>
                                 <th>{{ _t('status') }}</th>
                                 <th>{{ _t('order_by') }}</th>
                                 <th class="text-center">{{ _t('action') }}</th>
@@ -62,32 +63,43 @@
                                 <tr>
                                     <td>{{ $order->order_number }}</td>
                                     <td>{{ format_currency($order->amount) }}</td>
-                                    <td>{{ $order->statusName }}</td>
+                                    <td>
+                                        @if ($order->remain > 0)
+                                            <a href="{{ route('payments.create', ['order' => $order->id, 'amount' => $order->remain]) }}">
+                                                {{ format_currency($order->remain) }}
+                                            </a>
+                                        @else
+                                            {{ format_currency($order->remain) }}
+                                        @endif
+                                    </td>
+                                    <td>{!! activeInactiveHtml($order->statusName) !!}</td>
                                     <td>
                                         {{ $order->orderBy->name }}
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('orders.edit', [$order->id]) }}"
-                                           class="mr-3 text-primary" data-toggle="tooltip"
-                                           data-placement="top" title=""
-                                           data-original-title="{{ _t('edit') }}">
-                                            <i class="mdi mdi-pencil font-size-18"></i>
-                                        </a>
-                                        {!! Form::open([
-                                                'method' => 'DELETE',
-                                                'route' => ['orders.destroy', $order->id],
-                                                'style'=>'display:inline',
-                                                'onsubmit' => 'return confirm("' . _t('delete_confirm') . '");'
-                                        ]) !!}
-                                        <span data-toggle="tooltip"
-                                              data-placement="top" title=""
-                                              data-original-title="{{ _t('delete') }}">
+                                        @if($order->statusName !== _t('completed') && $order->statusName !== _t('canceled'))
+                                            <a href="{{ route('orders.edit', [$order->id]) }}"
+                                               class="mr-3 text-primary" data-toggle="tooltip"
+                                               data-placement="top" title=""
+                                               data-original-title="{{ _t('edit') }}">
+                                                <i class="mdi mdi-pencil font-size-18"></i>
+                                            </a>
+                                            {!! Form::open([
+                                                    'method' => 'DELETE',
+                                                    'route' => ['orders.destroy', $order->id],
+                                                    'style'=>'display:inline',
+                                                    'onsubmit' => 'return confirm("' . _t('delete_confirm') . '");'
+                                            ]) !!}
+                                            <span data-toggle="tooltip"
+                                                  data-placement="top" title=""
+                                                  data-original-title="{{ _t('delete') }}">
                                             <button type="submit"
                                                     style="background: transparent; border: transparent; padding: 0;">
                                                 <i class="mdi mdi-close font-size-18 text-danger"></i>
                                             </button>
                                         </span>
-                                        {!! Form::close() !!}
+                                            {!! Form::close() !!}
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

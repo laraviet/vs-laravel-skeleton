@@ -18,8 +18,10 @@ class CreateOrdersTable extends Migration
             $table->string('order_number')->nullable();
             $table->unsignedDouble('amount');
             $table->unsignedBigInteger('order_by')->nullable();
+            $table->unsignedDouble('paid')->default(0);
             $table->unsignedTinyInteger('status')->default(0); // 0 - Pending, 1 - Processing, 2 - Submitted, 3 - Cancelled, 4 - Completed
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('order_by')->references('id')->on('users');
         });
