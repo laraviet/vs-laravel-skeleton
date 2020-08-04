@@ -4,5 +4,6 @@
     "Product": true,
     "Blog": true,
     "Order": true,
-    "Payment": true
+    "Payment": true,
+    "Report": true
 }

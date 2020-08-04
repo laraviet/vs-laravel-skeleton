@@ -38,6 +38,10 @@
                                     <a href="{{ route('payments.index') }}"
                                        class="dropdown-item">{{ _t('payment') }}</a>
                                 @endif
+                                @if(Module::find('report') && Module::find('report')->isEnabled())
+                                    <a href="{{ route('report.index') }}"
+                                       class="dropdown-item">{{ _t('report') }}</a>
+                                @endif
                             </div>
                         </li>
                     @endif

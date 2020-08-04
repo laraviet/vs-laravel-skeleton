@@ -12,6 +12,7 @@ use Modules\Core\Exceptions\RepositoryException;
 use Modules\Core\Http\Controllers\Controller;
 use Modules\Core\Repositories\Contracts\UserRepositoryInterface;
 use Modules\Order\Entities\Order;
+use Modules\Order\Events\OrderCompletedEvent;
 use Modules\Order\Http\Requests\CreateOrderRequest;
 use Modules\Order\Http\Requests\UpdateOrderRequest;
 use Modules\Order\Repositories\Contracts\OrderRepositoryInterface;
@@ -87,7 +88,11 @@ class OrderController extends Controller
             $products[] = \json_decode($product);
         }
         $order_by = $request->input('order_by');
-        $this->orderRepository->create(compact('products', 'order_by'));
+        $order = $this->orderRepository->create(compact('products', 'order_by'));
+
+        if ($order->statusName == _t('completed')) {
+            event(new OrderCompletedEvent($order));
+        }
 
         return redirect()->route('orders.index')
             ->with(config('core.session_success'), _t('order') . ' ' . _t('create_success'));
@@ -115,7 +120,10 @@ class OrderController extends Controller
      */
     public function update(UpdateOrderRequest $request, $id)
     {
-        $this->orderRepository->updateById($id, $request->except(['_token', 'method']));
+        $order = $this->orderRepository->updateById($id, $request->except(['_token', 'method']));
+        if ($order->statusName == _t('completed')) {
+            event(new OrderCompletedEvent($order));
+        }
 
         return redirect()->route('orders.index')
             ->with(config('core.session_success'), _t('order') . ' ' . _t('update_success'));

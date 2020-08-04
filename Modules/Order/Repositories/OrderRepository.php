@@ -38,6 +38,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         $order_info = [
             'order_by' => $attributes['order_by'],
             'amount'   => $amount,
+            'status'   => Order::STATUS_PENDING,
         ];
 
         $order = parent::create($order_info);

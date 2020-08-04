@@ -21,5 +21,5 @@ class Order extends Model
     const STATUS_CANCELED = 3;
     const STATUS_COMPLETED = 4;
 
-    protected $fillable = ['order_number', 'order_by', 'amount'];
+    protected $fillable = ['order_number', 'order_by', 'amount', 'status'];
 }
