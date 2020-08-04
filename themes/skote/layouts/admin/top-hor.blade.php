@@ -3,7 +3,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="#" class="logo logo-light">
+                <a href="{{ url('admin') }}" class="logo logo-light">
                     <span class="logo-sm">
                     </span>
                     <span class="logo-lg">
