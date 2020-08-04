@@ -1,15 +1,16 @@
 {
-    "name": "nwidart/payment",
+    "name": "laraviet/payment-module",
     "description": "",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Laraviet",
+            "email": "thanhcttsp@gmail.com"
         }
     ],
     "license": "MIT",
     "require": {
-        "laraviet/core-module": "dev-master"
+        "laraviet/core-module": "dev-master",
+        "laraviet/order-module": "dev-master"
     },
     "extra": {
         "laravel": {
@@ -24,5 +25,6 @@
         "psr-4": {
             "Modules\\Payment\\": ""
         }
-    }
+    },
+    "type": "laravel-module"
 }
