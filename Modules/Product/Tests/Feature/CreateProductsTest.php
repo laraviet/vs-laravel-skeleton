@@ -16,7 +16,6 @@ class CreateProductsTest extends BaseProductsTest
     /** @test */
     public function authenticated_users_can_create_new_product()
     {
-        $this->withoutExceptionHandling();
         $this->signIn();
 
         $brand = create(Brand::class);

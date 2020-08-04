@@ -12,7 +12,6 @@ class UpdateBlogCategoriesTest extends BaseBlogCategoriesTest
     /** @test */
     public function authenticated_users_can_update_blog_category()
     {
-        $this->withoutExceptionHandling();
         $this->signIn();
 
         $this->updateEntity([

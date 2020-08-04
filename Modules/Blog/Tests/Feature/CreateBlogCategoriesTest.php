@@ -14,7 +14,6 @@ class CreateBlogCategoriesTest extends BaseBlogCategoriesTest
     /** @test */
     public function authenticated_users_can_store_blog_categories()
     {
-        $this->withoutExceptionHandling();
         $this->signIn();
 
         Storage::fake('photos');

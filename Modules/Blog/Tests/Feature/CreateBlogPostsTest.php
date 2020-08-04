@@ -15,7 +15,6 @@ class CreateBlogPostsTest extends BaseBlogPostsTest
     /** @test */
     public function authenticated_users_can_create_blog_post()
     {
-        $this->withoutExceptionHandling();
         $this->signIn();
 
         $category = create(BlogCategory::class, ['parent_id' => null]);
