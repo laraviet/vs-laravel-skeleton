@@ -2,8 +2,8 @@
 
 namespace Modules\Report\Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
 class ReportDatabaseSeeder extends Seeder
 {
@@ -16,6 +16,6 @@ class ReportDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(LabelTableSeeder::class);
     }
 }
