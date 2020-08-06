@@ -23,8 +23,8 @@ return [
     /*
      * The fully qualified class name of the media model.
      */
-    //'media_model' => Spatie\MediaLibrary\Models\Media::class, // Single App
-    'media_model'   => Modules\Core\Entities\Tenants\Media::class, // Multi-tenancy
+    'media_model'   => Spatie\MediaLibrary\Models\Media::class, // Single App
+    //'media_model'   => Modules\Core\Entities\Tenants\Media::class, // Multi-tenancy
 
     's3' => [
         /*

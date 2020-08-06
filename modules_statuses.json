@@ -6,5 +6,5 @@
     "Order": true,
     "Payment": true,
     "Report": true,
-    "SaasFront": true
+    "SaasFront": false
 }
