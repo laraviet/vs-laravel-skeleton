@@ -39,7 +39,16 @@ class BlogServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        if ( ! config('core.saas_enable')) {
+            $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        }
+        if (config('core.saas_enable')) {
+            $this->app->bind(\Modules\Blog\Entities\BlogCategory::class, \Modules\Blog\Entities\Tenants\BlogCategory::class);
+            $this->app->bind(\Modules\Blog\Entities\BlogCategoryTranslation::class, \Modules\Blog\Entities\Tenants\BlogCategoryTranslation::class);
+            $this->app->bind(\Modules\Blog\Entities\BlogPost::class, \Modules\Blog\Entities\Tenants\BlogPost::class);
+            $this->app->bind(\Modules\Blog\Entities\BlogPostTranslation::class, \Modules\Blog\Entities\Tenants\BlogPostTranslation::class);
+            $this->app->bind(\Modules\Blog\Entities\BlogTag::class, \Modules\Blog\Entities\Tenants\BlogTag::class);
+        }
     }
 
     /**
@@ -47,7 +56,8 @@ class BlogServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public
+    function register()
     {
         $this->app->register(RouteServiceProvider::class);
     }
@@ -57,7 +67,8 @@ class BlogServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerConfig()
+    protected
+    function registerConfig()
     {
         $this->publishes([
             module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower . '.php'),
@@ -72,7 +83,8 @@ class BlogServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerViews()
+    public
+    function registerViews()
     {
         $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
 
@@ -90,7 +102,8 @@ class BlogServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerTranslations()
+    public
+    function registerTranslations()
     {
         $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
 
@@ -106,7 +119,8 @@ class BlogServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerFactories()
+    public
+    function registerFactories()
     {
         if ( ! app()->environment('production') && $this->app->runningInConsole()) {
             app(Factory::class)->load(module_path($this->moduleName, 'Database/factories'));
@@ -118,12 +132,14 @@ class BlogServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public
+    function provides()
     {
         return [];
     }
 
-    private function getPublishableViewPaths(): array
+    private
+    function getPublishableViewPaths(): array
     {
         $paths = [];
         foreach (\Config::get('view.paths') as $path) {

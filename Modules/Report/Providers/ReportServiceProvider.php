@@ -29,7 +29,14 @@ class ReportServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        if ( ! config('core.saas_enable')) {
+            $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        }
+        if (config('core.saas_enable')) {
+            $this->app->bind(\Modules\Report\Entities\Report::class, \Modules\Report\Entities\Tenants\Report::class);
+            $this->app->bind(\Modules\Report\Entities\ReportRevenueDaily::class, \Modules\Report\Entities\Tenants\ReportRevenueDaily::class);
+            $this->app->bind(\Modules\Report\Entities\ReportRevenueMonthly::class, \Modules\Report\Entities\Tenants\ReportRevenueMonthly::class);
+        }
     }
 
     /**

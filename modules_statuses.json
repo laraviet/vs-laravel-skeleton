@@ -5,5 +5,6 @@
     "Blog": true,
     "Order": true,
     "Payment": true,
-    "Report": true
+    "Report": true,
+    "SaasFront": true
 }

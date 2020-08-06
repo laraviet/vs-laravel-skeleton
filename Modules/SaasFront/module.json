@@ -1,0 +1,13 @@
+{
+    "name": "SaasFront",
+    "alias": "saasfront",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\SaasFront\\Providers\\SaasFrontServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

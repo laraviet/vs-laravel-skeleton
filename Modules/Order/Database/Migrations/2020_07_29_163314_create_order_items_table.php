@@ -22,7 +22,7 @@ class CreateOrderItemsTable extends Migration
             $table->unsignedDouble('total');
             $table->timestamps();
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('product_id')->references('id')->on('products');
+            //$table->foreign('product_id')->references('id')->on('products');
         });
     }
 

@@ -43,7 +43,17 @@ class ProductServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        if ( ! config('core.saas_enable')) {
+            $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        }
+        if (config('core.saas_enable')) {
+            $this->app->bind(\Modules\Product\Entities\Brand::class, \Modules\Product\Entities\Tenants\Brand::class);
+            $this->app->bind(\Modules\Product\Entities\Product::class, \Modules\Product\Entities\Tenants\Product::class);
+            $this->app->bind(\Modules\Product\Entities\ProductTranslation::class, \Modules\Product\Entities\Tenants\ProductTranslation::class);
+            $this->app->bind(\Modules\Product\Entities\ProductCategory::class, \Modules\Product\Entities\Tenants\ProductCategory::class);
+            $this->app->bind(\Modules\Product\Entities\ProductCategoryTranslation::class, \Modules\Product\Entities\Tenants\ProductCategoryTranslation::class);
+            $this->app->bind(\Modules\Product\Entities\ProductTag::class, \Modules\Product\Entities\Tenants\ProductTag::class);
+        }
     }
 
     /**

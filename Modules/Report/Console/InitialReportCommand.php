@@ -4,8 +4,6 @@ namespace Modules\Report\Console;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Modules\Report\Entities\ReportRequestDaily;
-use Modules\Report\Entities\ReportRequestMonthly;
 use Modules\Report\Entities\ReportRevenueDaily;
 use Modules\Report\Entities\ReportRevenueMonthly;
 use Symfony\Component\Console\Input\InputArgument;
@@ -51,15 +49,6 @@ class InitialReportCommand extends Command
         ]);
 
         ReportRevenueMonthly::firstOrCreate([
-            "month" => $today->month,
-            "year"  => $today->year,
-        ]);
-
-        ReportRequestDaily::firstOrCreate([
-            "day" => $today->toDateString()
-        ]);
-
-        ReportRequestMonthly::firstOrCreate([
             "month" => $today->month,
             "year"  => $today->year,
         ]);

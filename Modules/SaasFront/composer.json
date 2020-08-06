@@ -1,0 +1,29 @@
+{
+    "name": "laraviet/saas-front-module",
+    "description": "",
+    "authors": [
+        {
+            "name": "Laraviet",
+            "email": "thanhcttsp@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "laraviet/core-module": "dev-master"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\SaasFront\\Providers\\SaasFrontServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\SaasFront\\": ""
+        }
+    },
+    "type": "laravel-module"
+}

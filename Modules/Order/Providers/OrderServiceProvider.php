@@ -36,7 +36,13 @@ class OrderServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        if ( ! config('core.saas_enable')) {
+            $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        }
+        if (config('core.saas_enable')) {
+            $this->app->bind(\Modules\Order\Entities\Order::class, \Modules\Order\Entities\Tenants\Order::class);
+            $this->app->bind(\Modules\Order\Entities\OrderItem::class, \Modules\Order\Entities\Tenants\OrderItem::class);
+        }
     }
 
     /**

@@ -40,7 +40,12 @@ class PaymentServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        if ( ! config('core.saas_enable')) {
+            $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        }
+        if (config('core.saas_enable')) {
+            $this->app->bind(\Modules\Payment\Entities\Payment::class, \Modules\Payment\Entities\Tenants\Payment::class);
+        }
     }
 
     /**
