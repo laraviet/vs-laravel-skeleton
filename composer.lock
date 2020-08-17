@@ -1949,12 +1949,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laraviet/admin-home-module.git",
-                "reference": "238b6d0cd274f9983e2c36971c84e340f848f7a5"
+                "reference": "6465b440a453f32ad1fdd32f31a8cb650e2a03cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laraviet/admin-home-module/zipball/238b6d0cd274f9983e2c36971c84e340f848f7a5",
-                "reference": "238b6d0cd274f9983e2c36971c84e340f848f7a5",
+                "url": "https://api.github.com/repos/laraviet/admin-home-module/zipball/6465b440a453f32ad1fdd32f31a8cb650e2a03cc",
+                "reference": "6465b440a453f32ad1fdd32f31a8cb650e2a03cc",
                 "shasum": ""
             },
             "require": {
@@ -1992,12 +1992,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laraviet/core-module.git",
-                "reference": "717c06f409e6d8291024102289a41d2f8c015f3b"
+                "reference": "89c498c67bdc9500d068a70140aa2e46ed77b9a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laraviet/core-module/zipball/717c06f409e6d8291024102289a41d2f8c015f3b",
-                "reference": "717c06f409e6d8291024102289a41d2f8c015f3b",
+                "url": "https://api.github.com/repos/laraviet/core-module/zipball/89c498c67bdc9500d068a70140aa2e46ed77b9a0",
+                "reference": "89c498c67bdc9500d068a70140aa2e46ed77b9a0",
                 "shasum": ""
             },
             "require": {
